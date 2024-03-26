@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS MVC Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+        background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    .center-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      transition-duration: 0.4s;
+    }
+
+    button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    /* Responsive design for tablets */
+    @media (max-width: 768px) {
+      .center-div {
+        width: 90%;
+      }
+    }
+
+    /* Responsive design for mobile phones */
+    @media (max-width: 480px) {
+      .center-div {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="center-div" ng-controller="GreetingController">
+    <h2>Model-View-Controller (MVC) Example</h2>
+    <form>
+      <label for="name">Enter your password:</label>
+      <input type="password" id="name" ng-model="name" placeholder="Enter your name">
+      <button ng-click="displayGreeting()">Show</button>
+    </form>
+    <p ng-show="showGreeting">Your Password is: {{ greeting }}</p>
+  </div>
+  <script>
+    angular.module('myApp', [])
+    .controller('GreetingController', function($scope) {
+      $scope.name = ''; // Model
+
+      // Controller function to display greeting
+      $scope.displayGreeting = function() {
+        if ($scope.name) {
+          $scope.greeting = $scope.name; // Model
+          $scope.showGreeting = true; // Model
+        }
+      };
+    });
+  </script>
+</body>
+</html>
